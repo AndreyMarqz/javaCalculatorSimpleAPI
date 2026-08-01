@@ -7,12 +7,4 @@ public class ResponseAreaTriangulo {
     public ResponseAreaTriangulo(double areaTriangulo) {
         this.areaTriangulo = areaTriangulo;
     }
-
-    public double getAreaTriangulo() {
-        return areaTriangulo;
-    }
-
-    public void setAreaTriangulo(double areaTriangulo) {
-        this.areaTriangulo = areaTriangulo;
-    }
 }

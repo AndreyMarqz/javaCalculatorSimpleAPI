@@ -8,6 +8,7 @@ public class Request {
     private Integer tabuadaNum;
     private Integer baseTriangulo;
     private Integer alturaTriangulo;
+    private Integer parOuImpar;
 
     public double getNum1() {
         return num1;
@@ -55,5 +56,13 @@ public class Request {
 
     public void setAlturaTriangulo(Integer alturaTriangulo) {
         this.alturaTriangulo = alturaTriangulo;
+    }
+
+    public Integer getParOuImpar() {
+        return parOuImpar;
+    }
+
+    public void setParOuImpar(Integer parOuImpar) {
+        this.parOuImpar = parOuImpar;
     }
 }

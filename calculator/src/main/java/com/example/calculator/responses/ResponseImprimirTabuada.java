@@ -9,8 +9,4 @@ public class ResponseImprimirTabuada {
     public ResponseImprimirTabuada(List<String> resultadoTabuada) {
         this.resultadoTabuada = resultadoTabuada;
     }
-
-    public List<String> getResultadoTabuada() {
-        return resultadoTabuada;
-    }
 }

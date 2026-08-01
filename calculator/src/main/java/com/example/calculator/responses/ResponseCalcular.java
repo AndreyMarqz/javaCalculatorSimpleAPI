@@ -9,12 +9,4 @@ public class ResponseCalcular {
         this.resultado = resultado;
         this.mensagem = mensagem;
     }
-
-    public double getResultado() {
-        return resultado;
-    }
-
-    public String getMensagem() {
-        return mensagem;
-    }
 }

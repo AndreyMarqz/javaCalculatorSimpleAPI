@@ -3,6 +3,7 @@ package com.example.calculator;
 import com.example.calculator.responses.ResponseAreaTriangulo;
 import com.example.calculator.responses.ResponseCalcular;
 import com.example.calculator.responses.ResponseImprimirTabuada;
+import com.example.calculator.responses.ResponseParOuImpar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,6 +37,10 @@ public class Controller {
     public ResponseEntity<?> imprimirTabuada(@RequestBody Request request) {
         List<String> resultado = service.imprimirTabuada(request.getTabuadaNum());
 
+        if(request.getTabuadaNum() < 0) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Insira um número positivo");
+        }
+
         return ResponseEntity.ok(new ResponseImprimirTabuada(resultado));
     }
 
@@ -48,5 +53,17 @@ public class Controller {
         }
 
         return ResponseEntity.ok(new ResponseAreaTriangulo(areaTriangulo));
+    }
+
+    @PostMapping("/parOuImpar")
+    public ResponseEntity<?> parOuImpar(@RequestBody Request request) {
+
+        String parOuImpar = service.verificarParOuImpar(request.getParOuImpar());
+
+        if(request.getParOuImpar() <= 0) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Insira um número positivo maior que 0");
+        }
+
+        return ResponseEntity.ok(new ResponseParOuImpar(parOuImpar));
     }
 }

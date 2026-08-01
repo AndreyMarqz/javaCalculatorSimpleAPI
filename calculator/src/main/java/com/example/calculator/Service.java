@@ -1,10 +1,6 @@
 package com.example.calculator;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.server.ResponseStatusException;
-
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,12 +39,14 @@ public class Service {
 
     public List<String> imprimirTabuada(Integer num1) {
 
+        DecimalFormat formatter = new DecimalFormat("0");
         List<String> resultado = new ArrayList<>();
         int contador = 0;
 
         while(contador <= 10) {
-            int tabuada = num1 * contador;
-            String linha = num1 + " x " + contador + " = " + tabuada;
+            double tabuada = multiplicacao(num1, contador);
+            String tabuadaFormatada = formatter.format(tabuada);
+            String linha = num1 + " x " + contador + " = " + tabuadaFormatada;
             resultado.add(linha);
             contador += 1;
         }
@@ -59,5 +57,12 @@ public class Service {
     public double calcularAreaTriangulo(double baseTriangulo, double alturaTriangulo) {
 
         return multiplicacao(baseTriangulo, alturaTriangulo) / 2;
+    }
+
+    public String verificarParOuImpar(Integer parOuImpar) {
+
+        if(parOuImpar % 2 == 0){
+            return "O número " + parOuImpar + " é par";
+        } return "O número " + parOuImpar + " é ímpar";
     }
 }
