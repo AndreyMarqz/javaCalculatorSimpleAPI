@@ -6,6 +6,8 @@ public class Request {
     private double num2;
     private String operador;
     private Integer tabuadaNum;
+    private Integer baseTriangulo;
+    private Integer alturaTriangulo;
 
     public double getNum1() {
         return num1;
@@ -37,5 +39,21 @@ public class Request {
 
     public void setTabuadaNum(Integer tabuadaNum) {
         this.tabuadaNum = tabuadaNum;
+    }
+
+    public Integer getBaseTriangulo() {
+        return baseTriangulo;
+    }
+
+    public void setBaseTriangulo(Integer baseTriangulo) {
+        this.baseTriangulo = baseTriangulo;
+    }
+
+    public Integer getAlturaTriangulo() {
+        return alturaTriangulo;
+    }
+
+    public void setAlturaTriangulo(Integer alturaTriangulo) {
+        this.alturaTriangulo = alturaTriangulo;
     }
 }

@@ -1,8 +1,10 @@
 package com.example.calculator;
 
+import com.example.calculator.responses.ResponseAreaTriangulo;
 import com.example.calculator.responses.ResponseCalcular;
 import com.example.calculator.responses.ResponseImprimirTabuada;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,5 +37,16 @@ public class Controller {
         List<String> resultado = service.imprimirTabuada(request.getTabuadaNum());
 
         return ResponseEntity.ok(new ResponseImprimirTabuada(resultado));
+    }
+
+    @PostMapping("/calcularAreaTriangulo")
+    public ResponseEntity<?> calcularAreaTriangulo(@RequestBody Request request) {
+        double areaTriangulo = service.calcularAreaTriangulo(request.getBaseTriangulo(), request.getAlturaTriangulo());
+
+        if(areaTriangulo < 0) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Insira um número positivo");
+        }
+
+        return ResponseEntity.ok(new ResponseAreaTriangulo(areaTriangulo));
     }
 }
