@@ -1,11 +1,15 @@
 package com.example.calculator;
 
+import com.example.calculator.responses.ResponseCalcular;
+import com.example.calculator.responses.ResponseImprimirTabuada;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/calculadora")
@@ -19,10 +23,17 @@ public class Controller {
         try {
             double resultado = service.calcular(request.getNum1(), request.getNum2(), request.getOperador());
 
-            return ResponseEntity.ok(new Response(resultado, "Cálculo realizado"));
+            return ResponseEntity.ok(new ResponseCalcular(resultado, "Cálculo realizado"));
 
         } catch (IllegalArgumentException | ArithmeticException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+    }
+
+    @PostMapping("/imprimirTabuada")
+    public ResponseEntity<?> imprimirTabuada(@RequestBody Request request) {
+        List<String> resultado = service.imprimirTabuada(request.getTabuadaNum());
+
+        return ResponseEntity.ok(new ResponseImprimirTabuada(resultado));
     }
 }

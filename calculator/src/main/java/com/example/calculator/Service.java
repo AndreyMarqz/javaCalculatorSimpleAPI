@@ -1,5 +1,8 @@
 package com.example.calculator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @org.springframework.stereotype.Service
 public class Service {
 
@@ -24,17 +27,27 @@ public class Service {
 
     public double calcular(double num1, double num2, String operador) {
 
-        switch (operador) {
-            case "+":
-                return soma(num1, num2);
-            case "-":
-                return subtracao(num1, num2);
-            case "*":
-                return multiplicacao(num1, num2);
-            case "/":
-                return divisao(num1, num2);
-            default:
-                throw new IllegalArgumentException("Operador inválido");
+        return switch (operador) {
+            case "+" -> soma(num1, num2);
+            case "-" -> subtracao(num1, num2);
+            case "*" -> multiplicacao(num1, num2);
+            case "/" -> divisao(num1, num2);
+            default -> throw new IllegalArgumentException("Operador inválido");
+        };
+    }
+
+    public List<String> imprimirTabuada(Integer num1) {
+
+        List<String> resultado = new ArrayList<>();
+        int contador = 0;
+
+        while(contador <= 10) {
+            int tabuada = num1 * contador;
+            String linha = num1 + " x " + contador + " = " + tabuada;
+            resultado.add(linha);
+            contador += 1;
         }
+
+        return resultado;
     }
 }

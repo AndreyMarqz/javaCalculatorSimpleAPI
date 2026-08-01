@@ -1,11 +1,11 @@
-package com.example.calculator;
+package com.example.calculator.responses;
 
-public class Response {
+public class ResponseCalcular {
 
-    private double resultado;
-    private String mensagem;
+    final private double resultado;
+    final private String mensagem;
 
-    public Response(double resultado, String mensagem) {
+    public ResponseCalcular(double resultado, String mensagem) {
         this.resultado = resultado;
         this.mensagem = mensagem;
     }
