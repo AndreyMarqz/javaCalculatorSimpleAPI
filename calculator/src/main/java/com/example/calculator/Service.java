@@ -82,4 +82,12 @@ public class Service {
 
         return (temperaturaCelsius * 1.8) + 32;
     }
+
+    public Integer calcularFatorial(Integer num) {
+
+        for(int i = num; i > 1; i--) {
+            num = (int) multiplicacao(num, i - 1);
+        }
+        return num;
+    }
 }

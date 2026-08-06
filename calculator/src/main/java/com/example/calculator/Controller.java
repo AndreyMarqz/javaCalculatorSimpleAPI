@@ -32,22 +32,24 @@ public class Controller {
 
     @PostMapping("/imprimirTabuada")
     public ResponseEntity<?> imprimirTabuada(@RequestBody Request request) {
-        List<String> resultado = service.imprimirTabuada(request.getTabuadaNum());
 
         if(request.getTabuadaNum() < 0) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Insira um número positivo");
         }
+
+        List<String> resultado = service.imprimirTabuada(request.getTabuadaNum());
 
         return ResponseEntity.ok(new ResponseImprimirTabuada(resultado));
     }
 
     @PostMapping("/calcularAreaTriangulo")
     public ResponseEntity<?> calcularAreaTriangulo(@RequestBody Request request) {
-        double areaTriangulo = service.calcularAreaTriangulo(request.getBaseTriangulo(), request.getAlturaTriangulo());
 
-        if(areaTriangulo < 0) {
+        if(request.getAlturaTriangulo() < 0 || request.getBaseTriangulo() < 0) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Insira um número positivo");
         }
+
+        double areaTriangulo = service.calcularAreaTriangulo(request.getBaseTriangulo(), request.getAlturaTriangulo());
 
         return ResponseEntity.ok(new ResponseAreaTriangulo(areaTriangulo));
     }
@@ -55,11 +57,11 @@ public class Controller {
     @PostMapping("/parOuImpar")
     public ResponseEntity<?> parOuImpar(@RequestBody Request request) {
 
-        String parOuImpar = service.verificarParOuImpar(request.getParOuImpar());
-
         if(request.getParOuImpar() <= 0) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Insira um número positivo maior que 0");
         }
+
+        String parOuImpar = service.verificarParOuImpar(request.getParOuImpar());
 
         return ResponseEntity.ok(new ResponseParOuImpar(parOuImpar));
     }
@@ -67,11 +69,11 @@ public class Controller {
     @PostMapping("/restoDivisao")
     public ResponseEntity<?> restoDivisao(@RequestBody Request request) {
 
-        double restoDivisao = service.restoDivisao(request.getNum1(), request.getNum2());
-
         if(request.getNum1() <= 0 || request.getNum2() <= 0) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Insira um número positivo maior que 0");
         }
+
+        double restoDivisao = service.restoDivisao(request.getNum1(), request.getNum2());
 
         return ResponseEntity.ok(new ResponseRestoDivisao(restoDivisao));
     }
@@ -90,5 +92,17 @@ public class Controller {
         double resultado = service.converterParaFahrenheit(request.getTemperaturaCelsius());
 
         return ResponseEntity.ok(new ResponseTemperaturaFahrenheit(resultado));
+    }
+
+    @PostMapping("/calcularFatorial")
+    public ResponseEntity<?> calcularFatorial(@RequestBody Request request) {
+
+        if(request.getFatorial() <= 0) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Insira um número positivo maior que 0");
+        }
+
+        Integer fatorial = service.calcularFatorial(request.getFatorial());
+
+        return ResponseEntity.ok(new ResponseFatorial(fatorial));
     }
 }

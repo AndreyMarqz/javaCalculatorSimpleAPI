@@ -8,7 +8,4 @@ public class ResponseTemperaturaFahrenheit {
         this.fahrenheit = fahrenheit;
     }
 
-    public double getFahrenheit() {
-        return fahrenheit;
-    }
 }
