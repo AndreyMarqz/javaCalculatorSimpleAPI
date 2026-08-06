@@ -2,13 +2,15 @@ package com.example.calculator;
 
 public class Request {
 
-    private double num1;
-    private double num2;
+    private Double num1;
+    private Double num2;
     private String operador;
     private Integer tabuadaNum;
     private Integer baseTriangulo;
     private Integer alturaTriangulo;
     private Integer parOuImpar;
+    private Double temperaturaFahrenheit;
+    private Double temperaturaCelsius;
 
     public double getNum1() {
         return num1;
@@ -64,5 +66,21 @@ public class Request {
 
     public void setParOuImpar(Integer parOuImpar) {
         this.parOuImpar = parOuImpar;
+    }
+
+    public double getTemperaturaFahrenheit() {
+        return temperaturaFahrenheit;
+    }
+
+    public void setTemperaturaFahrenheit(double temperaturaFahrenheit) {
+        this.temperaturaFahrenheit = temperaturaFahrenheit;
+    }
+
+    public double getTemperaturaCelsius() {
+        return temperaturaCelsius;
+    }
+
+    public void setTemperaturaCelsius(double temperaturaCelsius) {
+        this.temperaturaCelsius = temperaturaCelsius;
     }
 }

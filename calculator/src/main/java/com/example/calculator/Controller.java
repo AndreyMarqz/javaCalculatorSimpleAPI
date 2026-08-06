@@ -1,9 +1,6 @@
 package com.example.calculator;
 
-import com.example.calculator.responses.ResponseAreaTriangulo;
-import com.example.calculator.responses.ResponseCalcular;
-import com.example.calculator.responses.ResponseImprimirTabuada;
-import com.example.calculator.responses.ResponseParOuImpar;
+import com.example.calculator.responses.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -65,5 +62,33 @@ public class Controller {
         }
 
         return ResponseEntity.ok(new ResponseParOuImpar(parOuImpar));
+    }
+
+    @PostMapping("/restoDivisao")
+    public ResponseEntity<?> restoDivisao(@RequestBody Request request) {
+
+        double restoDivisao = service.restoDivisao(request.getNum1(), request.getNum2());
+
+        if(request.getNum1() <= 0 || request.getNum2() <= 0) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Insira um número positivo maior que 0");
+        }
+
+        return ResponseEntity.ok(new ResponseRestoDivisao(restoDivisao));
+    }
+
+    @PostMapping("/converterParaCelsius")
+    public ResponseEntity<?> converterParaCelsius(@RequestBody Request request) {
+
+        double resultado = service.converterParaCelsius(request.getTemperaturaFahrenheit());
+
+        return ResponseEntity.ok(new ResponseTemperaturaCelsius(resultado));
+    }
+
+    @PostMapping("/converterParaFahrenheit")
+    public ResponseEntity<?> converterParaFahrenheit(@RequestBody Request request) {
+
+        double resultado = service.converterParaFahrenheit(request.getTemperaturaCelsius());
+
+        return ResponseEntity.ok(new ResponseTemperaturaFahrenheit(resultado));
     }
 }
