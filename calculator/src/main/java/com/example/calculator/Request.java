@@ -12,6 +12,7 @@ public class Request {
     private Double temperaturaFahrenheit;
     private Double temperaturaCelsius;
     private Integer fatorial;
+    private Integer fibonacci;
 
     public double getNum1() {
         return num1;
@@ -51,5 +52,9 @@ public class Request {
 
     public Integer getFatorial() {
         return fatorial;
+    }
+
+    public Integer getFibonacci() {
+        return fibonacci;
     }
 }

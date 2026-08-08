@@ -105,4 +105,16 @@ public class Controller {
 
         return ResponseEntity.ok(new ResponseFatorial(fatorial));
     }
+
+    @PostMapping("/fibonacci")
+    public ResponseEntity<?> fibonacci(@RequestBody Request request) {
+
+        if(request.getFibonacci() <= 0) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Insira um número positivo maior que 0");
+        }
+
+        List<Integer> fibonacci = service.fibonacci(request.getFibonacci());
+
+        return ResponseEntity.ok(new ResponseFibonacci(fibonacci));
+    }
 }

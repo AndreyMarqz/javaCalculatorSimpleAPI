@@ -90,4 +90,24 @@ public class Service {
         }
         return num;
     }
+
+    public List<Integer> fibonacci(Integer num) {
+
+        List<Integer> sequenciaDeFibonacci = new ArrayList<>(List.of(0, 1));
+
+        for(int i = 0, j = 1; ; i++, j++) {
+
+            int lastNum = sequenciaDeFibonacci.get(i);
+            int penultimateNum = sequenciaDeFibonacci.get(j);
+
+            int next = lastNum + penultimateNum;
+            if(next > num) {
+                break;
+            }
+
+            sequenciaDeFibonacci.add(next);
+        }
+
+        return sequenciaDeFibonacci;
+    }
 }
