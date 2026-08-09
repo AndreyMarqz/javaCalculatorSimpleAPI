@@ -129,4 +129,20 @@ public class Controller {
 
         return ResponseEntity.ok(new ResponseNumeroPrimo(numeroPrimo));
     }
+
+    @PostMapping("/contarCaracteres")
+    public ResponseEntity<?> contarCaracteres(@RequestBody Request request) {
+
+        Integer qtdCaracteres = service.contarCaracteres(request.getPalavra());
+
+        return ResponseEntity.ok(new ResponseCaracteres(qtdCaracteres));
+    }
+
+    @PostMapping("/inverterString")
+    public ResponseEntity<?> inverterString(@RequestBody Request request) {
+
+        String palavraInvertida = service.inverterString(request.getPalavra());
+
+        return ResponseEntity.ok(new ResponsePalavraInvertida(palavraInvertida));
+    }
 }

@@ -14,6 +14,7 @@ public class Request {
     private Integer fatorial;
     private Integer fibonacci;
     private Integer numeroPrimo;
+    private String palavra;
 
     public double getNum1() {
         return num1;
@@ -61,5 +62,9 @@ public class Request {
 
     public Integer getNumeroPrimo() {
         return numeroPrimo;
+    }
+
+    public String getPalavra() {
+        return palavra;
     }
 }

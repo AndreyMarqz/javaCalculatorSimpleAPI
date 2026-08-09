@@ -126,4 +126,26 @@ public class Service {
         }
         return "O número " + num + " é primo";
     }
+
+    public Integer contarCaracteres(String palavra) {
+
+        List<Character> caracteres = new ArrayList<>();
+
+        for(char caracter : palavra.toCharArray()) {
+            caracteres.add(caracter);
+        }
+
+        return caracteres.size();
+    }
+
+    public String inverterString(String palavra) {
+
+        StringBuilder palavraInvertida = new StringBuilder();
+
+        for(int i = palavra.length() - 1; i >= 0; i--) {
+            palavraInvertida.append(palavra.charAt(i));
+        }
+
+        return palavraInvertida.toString();
+    }
 }
