@@ -148,4 +148,22 @@ public class Service {
 
         return palavraInvertida.toString();
     }
+
+    public String maiorEMenor(List<Integer> numeros) {
+
+        Integer maiorNumero = 0;
+        Integer menorNumero = numeros.getFirst();
+
+        for(int j = 1, i = 0; i < numeros.size() - 1; j++, i++) {
+            if(numeros.get(i) < numeros.get(j) && numeros.get(j) > maiorNumero) {
+                maiorNumero = numeros.get(j);
+            }
+
+            if(numeros.get(i) > numeros.get(j) && numeros.get(j) < menorNumero) {
+                menorNumero = numeros.get(j);
+            }
+        }
+
+        return "O maior número da lista é " + maiorNumero + " e o menor número da lista é " + menorNumero + ".";
+    }
 }

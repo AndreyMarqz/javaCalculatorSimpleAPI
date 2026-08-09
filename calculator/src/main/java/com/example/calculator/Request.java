@@ -1,5 +1,7 @@
 package com.example.calculator;
 
+import java.util.List;
+
 public class Request {
 
     private Double num1;
@@ -15,6 +17,7 @@ public class Request {
     private Integer fibonacci;
     private Integer numeroPrimo;
     private String palavra;
+    private List<Integer> listaDeNumeros;
 
     public double getNum1() {
         return num1;
@@ -66,5 +69,9 @@ public class Request {
 
     public String getPalavra() {
         return palavra;
+    }
+
+    public List<Integer> getListaDeNumeros() {
+        return listaDeNumeros;
     }
 }

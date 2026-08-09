@@ -145,4 +145,12 @@ public class Controller {
 
         return ResponseEntity.ok(new ResponsePalavraInvertida(palavraInvertida));
     }
+
+    @PostMapping("/maiorEMenor")
+    public ResponseEntity<?> maiorEMenor(@RequestBody Request request) {
+
+        String maiorEMenorNumero = service.maiorEMenor(request.getListaDeNumeros());
+
+        return ResponseEntity.ok(new ResponseListaDeNumeros(maiorEMenorNumero));
+    }
 }
