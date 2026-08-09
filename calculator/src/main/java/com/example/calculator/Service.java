@@ -97,17 +97,33 @@ public class Service {
 
         for(int i = 0, j = 1; ; i++, j++) {
 
-            int lastNum = sequenciaDeFibonacci.get(i);
-            int penultimateNum = sequenciaDeFibonacci.get(j);
+            int ultimoNumero = sequenciaDeFibonacci.get(i);
+            int penultimoNumero = sequenciaDeFibonacci.get(j);
 
-            int next = lastNum + penultimateNum;
-            if(next > num) {
+            int proximoNumero = (int) soma(ultimoNumero, penultimoNumero);
+            if(proximoNumero > num) {
                 break;
             }
 
-            sequenciaDeFibonacci.add(next);
+            sequenciaDeFibonacci.add(proximoNumero);
         }
 
         return sequenciaDeFibonacci;
+    }
+
+    public String verificarPrimo(Integer num) {
+
+        if(num <= 1) {
+            return "O número " + num + " não é primo";
+        } else if(num == 2) {
+            return "O número " + num + " é primo";
+        }
+
+        for(int i = 2; i < num; i++) {
+            if(num % i == 0){
+                return "O número " + num + " não é primo";
+            }
+        }
+        return "O número " + num + " é primo";
     }
 }

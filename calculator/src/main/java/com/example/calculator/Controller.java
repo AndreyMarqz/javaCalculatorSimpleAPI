@@ -117,4 +117,16 @@ public class Controller {
 
         return ResponseEntity.ok(new ResponseFibonacci(fibonacci));
     }
+
+    @PostMapping("/verificarPrimo")
+    public ResponseEntity<?> verificarPrimo(@RequestBody Request request) {
+
+        if(request.getNumeroPrimo() <= 0) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Insira um número positivo maior que 0");
+        }
+
+        String numeroPrimo = service.verificarPrimo(request.getNumeroPrimo());
+
+        return ResponseEntity.ok(new ResponseNumeroPrimo(numeroPrimo));
+    }
 }
