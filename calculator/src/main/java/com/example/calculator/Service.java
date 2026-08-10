@@ -151,7 +151,7 @@ public class Service {
 
     public String maiorEMenor(List<Integer> numeros) {
 
-        Integer maiorNumero = 0;
+        Integer maiorNumero = numeros.getFirst();
         Integer menorNumero = numeros.getFirst();
 
         for(int j = 1, i = 0; i < numeros.size() - 1; j++, i++) {
