@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 
 @RestController
@@ -152,5 +155,22 @@ public class Controller {
         String maiorEMenorNumero = service.maiorEMenor(request.getListaDeNumeros());
 
         return ResponseEntity.ok(new ResponseListaDeNumeros(maiorEMenorNumero));
+    }
+
+    @PostMapping("/calculaIdade")
+    public ResponseEntity<?> calculaIdade(@RequestBody Request request) {
+
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+            LocalDate.parse(request.getDataDeNascimento(), formatter);
+
+            String idade = service.calculaIdade(request.getDataDeNascimento());
+
+            return ResponseEntity.ok(new ResponseDataDeNascimento(idade));
+
+        } catch (DateTimeParseException e) {
+            return ResponseEntity.badRequest().body("Formato de data inválido. Use o formato dd/mm/aaaa.");
+        }
     }
 }

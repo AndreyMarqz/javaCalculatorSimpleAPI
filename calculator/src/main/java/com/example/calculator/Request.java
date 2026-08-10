@@ -18,6 +18,7 @@ public class Request {
     private Integer numeroPrimo;
     private String palavra;
     private List<Integer> listaDeNumeros;
+    private String dataDeNascimento;
 
     public double getNum1() {
         return num1;
@@ -73,5 +74,9 @@ public class Request {
 
     public List<Integer> getListaDeNumeros() {
         return listaDeNumeros;
+    }
+
+    public String getDataDeNascimento() {
+        return dataDeNascimento;
     }
 }

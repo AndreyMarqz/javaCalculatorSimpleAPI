@@ -1,7 +1,12 @@
 package com.example.calculator;
 
 import java.text.DecimalFormat;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @org.springframework.stereotype.Service
@@ -165,5 +170,16 @@ public class Service {
         }
 
         return "O maior número da lista é " + maiorNumero + " e o menor número da lista é " + menorNumero + ".";
+    }
+
+    public String calculaIdade(String dataDeNascimentoFormato) {
+
+        DateTimeFormatter formatoDeData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate dataDeNascimento = LocalDate.parse(dataDeNascimentoFormato, formatoDeData);
+        LocalDate hoje = LocalDate.now();
+
+        Period periodoEntreDatas = Period.between(dataDeNascimento, hoje);
+
+        return String.format("%d anos, %d meses e %d dias" , periodoEntreDatas.getYears(), periodoEntreDatas.getMonths(), periodoEntreDatas.getDays());
     }
 }
