@@ -9,10 +9,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/calculadora")
@@ -172,5 +175,47 @@ public class Controller {
         } catch (DateTimeParseException e) {
             return ResponseEntity.badRequest().body("Formato de data inválido. Use o formato dd/mm/aaaa.");
         }
+    }
+
+    @PostMapping("/somaDigitos")
+    public ResponseEntity<?> somaDigitos(@RequestBody Request request) {
+
+        if(request.getSomaDigitosNum() <= 0) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Insira um número positivo maior que 0");
+        }
+
+        Integer resultado = service.somaDigitos(request.getSomaDigitosNum());
+
+        return ResponseEntity.ok(new ResponseSomaDigitos(resultado));
+    }
+
+    @PostMapping("/calculoIMC")
+    public ResponseEntity<?> calculoIMC(@RequestBody Request request) {
+
+        if(Objects.isNull(request.getPeso()) || Objects.isNull(request.getAltura())) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Insira altura e peso");
+        }
+
+        if (request.getPeso() <= 0 || request.getAltura() <= 0) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Insira valores positivos e maiores que 0 para peso e altura");
+        }
+
+        double resultado = service.calculaIMC(request.getPeso(), request.getAltura());
+
+        Double resultadoFormatado = BigDecimal.valueOf(resultado).setScale(2, RoundingMode.HALF_UP).doubleValue();
+
+        return ResponseEntity.ok(new ResponseCalculoIMC(resultadoFormatado));
+    }
+
+    @PostMapping("/ordenaLista")
+    public ResponseEntity<?> ordenarLista(@RequestBody Request request) {
+
+        if(request.getListaDeNumeros() == null || request.getListaDeNumeros().isEmpty()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("A lista de números não pode estar vazia ou nula");
+        }
+
+        List<Integer> resultado = service.ordenarLista(request.getListaDeNumeros());
+
+        return ResponseEntity.ok(new ResponseListaOrdenada(resultado));
     }
 }

@@ -19,6 +19,9 @@ public class Request {
     private String palavra;
     private List<Integer> listaDeNumeros;
     private String dataDeNascimento;
+    private Integer somaDigitosNum;
+    private Double peso;
+    private Double altura;
 
     public double getNum1() {
         return num1;
@@ -78,5 +81,17 @@ public class Request {
 
     public String getDataDeNascimento() {
         return dataDeNascimento;
+    }
+
+    public Integer getSomaDigitosNum() {
+        return somaDigitosNum;
+    }
+
+    public Double getPeso() {
+        return peso;
+    }
+
+    public Double getAltura() {
+        return altura;
     }
 }

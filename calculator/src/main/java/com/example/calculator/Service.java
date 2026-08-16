@@ -182,4 +182,44 @@ public class Service {
 
         return String.format("%d anos, %d meses e %d dias" , periodoEntreDatas.getYears(), periodoEntreDatas.getMonths(), periodoEntreDatas.getDays());
     }
+
+    public Integer somaDigitos(Integer num) {
+
+        Integer soma = 0;
+        while(num > 0) {
+            soma += num % 10;
+            num /= 10;
+        }
+
+        return soma;
+    }
+
+    public double calculaIMC(double peso,  double altura) {
+
+        return peso / (altura * altura);
+    }
+
+    public List<Integer> ordenarLista(List<Integer> listaDeNumeros) {
+
+        List<Integer> listaOrdenada = new ArrayList<>(listaDeNumeros);
+        int n = listaOrdenada.size();
+        boolean trocou;
+
+        for (int i = 0; i < n - 1; i++) {
+            trocou = false;
+            for (int j = 0; j < n - 1 - i; j++) {
+                if (listaOrdenada.get(j) > listaOrdenada.get(j + 1)) {
+                    int temp = listaOrdenada.get(j);
+                    listaOrdenada.set(j, listaOrdenada.get(j + 1));
+                    listaOrdenada.set(j + 1, temp);
+                    trocou = true;
+                }
+            }
+            if (!trocou) {
+                break;
+            }
+        }
+
+        return listaOrdenada;
+    }
 }
